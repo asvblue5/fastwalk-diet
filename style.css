@@ -1,0 +1,98 @@
+:root {
+  --bg: #f6f2fb;
+  --bg2: #ede7f6;
+  --accent: #7e57c2;
+  --accent-dark: #4a2c7c;
+  --text: #2e1a47;
+  --subtext: #6d5a8c;
+  --card: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto,
+               Helvetica, Arial, sans-serif;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.hero { text-align: center; padding: 40px 0 24px; }
+.hero h1 {
+  margin: 0 0 8px;
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #b39ddb, #7e57c2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.tagline { color: var(--subtext); font-size: 18px; margin: 0; }
+
+nav.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 32px;
+}
+nav.links a {
+  background: var(--card);
+  color: var(--accent-dark);
+  padding: 14px 20px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 6px 14px rgba(126, 87, 194, 0.12);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+nav.links a:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(126, 87, 194, 0.18);
+}
+
+h1 { font-size: 36px; font-weight: 800; letter-spacing: -0.01em; margin: 0 0 12px; color: var(--text); }
+h2 { font-size: 22px; margin: 32px 0 8px; color: var(--accent-dark); }
+p, li { font-size: 16px; color: var(--text); }
+a { color: var(--accent); }
+
+.legal-wrap {
+  background: var(--card);
+  padding: 32px 32px 48px;
+  border-radius: 22px;
+  box-shadow: 0 14px 40px rgba(46, 26, 71, 0.08);
+}
+
+.meta {
+  font-size: 14px;
+  color: var(--subtext);
+  margin: -4px 0 24px;
+}
+
+footer {
+  text-align: center;
+  font-size: 13px;
+  color: var(--subtext);
+  margin-top: 40px;
+}
+footer a { color: var(--accent); }
+
+.home-link {
+  display: inline-block;
+  color: var(--accent);
+  font-size: 14px;
+  text-decoration: none;
+  margin-bottom: 16px;
+}
+.home-link::before { content: "← "; }
