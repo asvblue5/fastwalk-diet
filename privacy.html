@@ -33,10 +33,27 @@ purchase. Subscription status is validated through RevenueCat, which assigns a r
 anonymous identifier to your device so entitlements can be restored across reinstalls.
 We do not receive your name, email, Apple ID, or payment details.</p>
 
+<p><strong>Account data (optional sign-in):</strong> Signing in is <em>optional</em>. If
+you do not sign in, the app creates an anonymous identifier locally so your plan can
+sync via Firebase across devices you own. If you choose to sign in with Apple, we receive
+the random Apple-relay email and your given name (only if you elect to share it) as
+returned by Sign in with Apple. If you choose to sign up with email and password, we
+receive your email address. We do not receive the password itself — authentication is
+handled by Firebase Authentication. We use this information only to identify your account
+and link your profile across your devices; we do not email you marketing.</p>
+
+<p><strong>Cloud sync (Firebase Firestore):</strong> When you are signed in, we store a
+single document containing your FastWalk Diet profile (age, body type, goal, activity
+level, daily step goal, calorie target, units, onboarding flag) and your current 7-day
+challenge progress in Firebase Firestore, scoped to your account identifier. Firestore
+security rules ensure only <em>you</em> can read or write this document. Your Apple Health
+data is never uploaded to Firestore or any of our servers. You can delete this
+cloud-stored data at any time via Profile &rarr; <em>Delete my data</em>.</p>
+
 <p><strong>Usage and diagnostics:</strong> We do not collect analytics or crash reports
 beyond those Apple automatically provides to developers if you opt in under
-<em>Settings → Privacy &amp; Security → Analytics &amp; Improvements</em>. This is
-controlled by you, not by us.</p>
+<em>Settings → Privacy &amp; Security → Analytics &amp; Improvements</em>. Firebase
+Analytics is explicitly disabled in our build.</p>
 
 <h2>2. How we use information</h2>
 <ul>
@@ -83,6 +100,16 @@ to do its job:</p>
       dish name. See
       <a href="https://x.ai/legal/privacy-policy" target="_blank" rel="noopener">xAI's
       Privacy Policy</a>.</li>
+  <li><strong>Google Firebase (Authentication &amp; Firestore):</strong> if you
+      sign in, Firebase Authentication handles credential verification and issues
+      the account identifier that scopes your data, and Firebase Firestore stores
+      the single user document described above. Firebase receives your email
+      address (when you sign up with email), your Sign-in-with-Apple relay email
+      and given name (only if you share it), your FastWalk Diet profile, and your
+      challenge progress. Firebase <strong>Analytics is disabled</strong> in our
+      build. Data is processed on Google Cloud infrastructure. See
+      <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase's
+      Privacy and Security page</a>.</li>
 </ul>
 
 <h2>5. Your rights and choices</h2>
@@ -90,8 +117,13 @@ to do its job:</p>
 <em>Settings → Privacy &amp; Security → Health → FastWalk Diet</em>.</p>
 <p><strong>Reset your profile:</strong> open the Profile tab in the app and tap "Reset
 profile". This deletes your local profile data.</p>
-<p><strong>Delete your data entirely:</strong> uninstalling the app removes all local
-data. To unlink your anonymous subscription identifier at RevenueCat, contact us at
+<p><strong>Delete your data entirely:</strong> open the Profile tab and tap
+<em>Delete my data</em>. This removes your local profile, challenge progress, cached
+meal plan, and stored API keys from this device; deletes your Firestore document; and
+deletes your Firebase Authentication account if you are signed in. Uninstalling the app
+removes all local data but does not by itself remove any cloud data &mdash; use
+<em>Delete my data</em> first. To unlink your anonymous subscription identifier at
+RevenueCat, contact us at
 <a href="mailto:support@fastwalkdiet.app">support@fastwalkdiet.app</a>.</p>
 <p><strong>Manage or cancel subscriptions:</strong> in
 <em>Settings → Apple ID → Subscriptions</em>.</p>
@@ -103,8 +135,9 @@ will assist in removing any identifiers.</p>
 
 <h2>7. International users</h2>
 <p>If you use the app from outside the United States, you understand that limited data
-(subscription identifiers) may be processed in the United States by RevenueCat and by
-Apple in the regions they operate.</p>
+(subscription identifiers, and if you sign in, your account identifier, email address,
+and synced profile) may be processed in the United States by RevenueCat, Google Cloud
+(Firebase), and Apple in the regions they operate.</p>
 
 <h2>8. Security</h2>
 <p>Your profile is stored using standard iOS UserDefaults storage protected by device
